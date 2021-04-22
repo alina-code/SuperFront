@@ -39,32 +39,14 @@ router.post('/login', function(req, res, next) {
 
 });
 
-router.get("/cashier/receiptPrintByMe/:from/:to",function (req,res){
-  let auth = req.cookies.auth;
-  console.log(req.params.from);
-  fetch('http://localhost:8080/cashier/receiptPrintByMe/'+req.params.from+"/"+req.params.to, {
-    method: 'GET',
-    headers: {
-      Authorization: auth
-    }}).then(response => response.json())
-      .then(data => {
-        console.log(data)
-        res.send(data);
-      })
-      .catch(err => console.log(err));
 
-})
 
 router.get('/cashier-queries', function(req, res, next) {
-  let checks = [{check_number:"1", id_employee:"1", card_number:"1", print_date:"17-04-2021", total_sum:"100", vat:"12"},
-    {check_number:"2", id_employee:"3", card_number:"4", print_date:"12-04-2021", total_sum:"109", vat:"52"}];
 
-  res.render('cashierQueriesPage', { title: 'Zlagoda',checks:checks});
+  res.render('cashierQueriesPage', { title: 'Zlagoda'});
 });
 
 router.get('/cashier', function(req, res, next) {
-
-
   res.render('cashierQueryPage', { title: 'Zlagoda'});
 });
 

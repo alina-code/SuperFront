@@ -13,6 +13,46 @@ function myChecks(){
           .catch(err => console.log(err));
 
 }
+function checkInfo() {
+    let checkNumber = document.getElementById('check-number-selector').value;
+
+    let uri = "/cashier/checkInfo/"+checkNumber;
+    console.log(uri);
+
+    fetch(uri).then(response => response.json())
+        .then(data => {
+            document.getElementById('table2').innerHTML = buildTableFromJson(data)
+        })
+        .catch(err => console.log(err));
+
+}
+
+function clientInfo() {
+    let surname = document.getElementById('client-surname-selector').value;
+
+    let uri = "/cashier/clientInfo/"+surname;
+    console.log(uri);
+
+    fetch(uri).then(response => response.json())
+        .then(data => {
+            document.getElementById('table3').innerHTML = buildTableFromJson(data)
+        })
+        .catch(err => console.log(err));
+
+}
+
+function clientWithDiscountInfo(){
+    let discount = document.getElementById('client-discount-selector').value;
+
+    let uri = "/cashier/clientsWithDiscount/"+discount;
+    console.log(uri);
+
+    fetch(uri).then(response => response.json())
+        .then(data => {
+            document.getElementById('table4').innerHTML = buildTableFromJson(data)
+        })
+        .catch(err => console.log(err));
+}
 
 // возвращает куки с указанным name,
 // или undefined, если ничего не найдено
