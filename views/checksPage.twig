@@ -2,7 +2,7 @@
 {% block body %}
 
     <h1 style = "margin-top: 30px;">Checks</h1>
-
+    <button type="button" class="btn btn-primary" style="margin-top: 30px; margin-bottom: 30px">Add check</button>
     <table class="table table-hover">
         <thead>
         <tr>
@@ -12,6 +12,7 @@
             <th scope="col">Print date</th>
             <th scope="col">Total sum</th>
             <th scope="col">Vat</th>
+            <th scope="col"> </th>
         </tr>
         </thead>
         <tbody>
@@ -20,6 +21,8 @@
                 {% for key in check %}
                     <td>{{ key }} </td>
                 {% endfor %}
+                <td><button type="button" class="btn btn-outline-success btn-sm">Edit</button>
+                    <button type="button" class="btn btn-outline-danger btn-sm" onclick="">Delete</button> </td>
             </tr>
         {% endfor %}
         </tbody>

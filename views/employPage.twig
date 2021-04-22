@@ -3,6 +3,7 @@
 {% block body %}
 
     <h1 style = "margin-top: 30px;">Employees</h1>
+    <button type="button" class="btn btn-primary" style="margin-top: 30px; margin-bottom: 30px">Add employee</button>
     <table class="table table-hover">
         <thead>
         <tr>
@@ -18,6 +19,7 @@
             <th scope="col">City</th>
             <th scope="col">Street</th>
             <th scope="col">Zip code</th>
+            <th scope="col"> </th>
         </tr>
         </thead>
         <tbody>
@@ -26,6 +28,8 @@
                 {% for key in employee %}
                     <td>{{ key }} </td>
                 {% endfor %}
+                <td><button type="button" class="btn btn-outline-success btn-sm">Edit</button>
+                    <button type="button" class="btn btn-outline-danger btn-sm" onclick="">Delete</button> </td>
             </tr>
         {% endfor %}
         </tbody>
