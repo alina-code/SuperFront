@@ -15,7 +15,7 @@
         </thead>
         <tbody>
         {% for category in categories %}
-            <tr>
+            <tr id ={{  category.category_number }}>
                 {% for key in category %}
                     <td>{{ key }} </td>
                 {% endfor %}
