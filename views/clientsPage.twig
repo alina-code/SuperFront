@@ -1,0 +1,30 @@
+{% extends 'layout.twig' %}
+{% block body %}
+
+    <h1 style = "margin-top: 30px;">Clients</h1>
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">Card number</th>
+            <th scope="col">Surname</th>
+            <th scope="col">Name</th>
+            <th scope="col">Patronymic</th>
+            <th scope="col">Phone number</th>
+            <th scope="col">City</th>
+            <th scope="col">Zip code</th>
+            <th scope="col">Discount</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for client in clients %}
+            <tr>
+                {% for key in client %}
+                    <td>{{ key }} </td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

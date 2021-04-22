@@ -1,0 +1,28 @@
+{% extends 'layout.twig' %}
+{% block body %}
+
+    <h1 style = "margin-top: 30px;">Products</h1>
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+
+            <th scope="col">Product id</th>
+            <th scope="col">Category Id</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for product in products %}
+            <tr>
+
+                {% for key in product %}
+                    <td>{{ key }} </td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'layout.twig' %}
+{% block body %}
+
+    <h1 style = "margin-top: 30px;">Categories</h1>
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">Category number</th>
+            <th scope="col">Category name</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for category in categories %}
+            <tr>
+                {% for key in category %}
+                    <td>{{ key }} </td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

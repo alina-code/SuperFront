@@ -1,0 +1,29 @@
+{% extends 'layout.twig' %}
+{% block body %}
+
+    <h1 style = "margin-top: 30px;">Checks</h1>
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">Check number</th>
+            <th scope="col">Employee Id</th>
+            <th scope="col">Card number</th>
+            <th scope="col">Print date</th>
+            <th scope="col">Total sum</th>
+            <th scope="col">Vat</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for check in checks %}
+            <tr>
+                {% for key in check %}
+                    <td>{{ key }} </td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}

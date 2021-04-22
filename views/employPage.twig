@@ -1,0 +1,34 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+
+    <h1 style = "margin-top: 30px;">Employees</h1>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">Employee id</th>
+            <th scope="col">Surname</th>
+            <th scope="col">Name</th>
+            <th scope="col">Patronymic</th>
+            <th scope="col">Role</th>
+            <th scope="col">Salary</th>
+            <th scope="col">Date of birth</th>
+            <th scope="col">Date of start</th>
+            <th scope="col">Phone number</th>
+            <th scope="col">City</th>
+            <th scope="col">Street</th>
+            <th scope="col">Zip code</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for employee in employees %}
+            <tr>
+                {% for key in employee %}
+                    <td>{{ key }} </td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
