@@ -92,12 +92,34 @@ router.get('/products', function(req, res, next) {
 
 });
 
+router.get('/store-products', function(req, res, next) {
+
+  let auth = req.cookies.auth;
+  fetch('http://localhost:8080/cashier/storeProduct',{
+    method: 'GET',
+    headers: {
+      Authorization: auth
+    }}).then(response => response.json())
+      .then(data => {
+        res.render('storeProductPage', { title: 'Zlagoda', store_products: data});
+
+      })
+      .catch(err => console.log(err));
+
+});
+
 router.get('/employ', function(req, res, next) {
-  let employees = [{id_employee: "1", empl_surname: "Ochrimenko", empl_name:"Nastia", empl_patronymic:"Juriivna", working_role:"cashier",
-    salary:"15000", date_of_birth: "01-03-2000", date_of_start: "09-05-2020", phone_number: "0987745313", city: "Brovary", street:"Nezalezhnosti",zip_code:"18"},
-    {id_employee: "2", empl_surname: "Nemyria", empl_name:"Grigoriy", empl_patronymic:"Volodymyrovych", working_role:"manager",
-      salary:"20000", date_of_birth: "09-12-2000", date_of_start: "09-07-2019", phone_number: "0987700313", city: "Brovary", street:"Volodymyra",zip_code:"34"}];
-  res.render('employPage', { title: 'Zlagoda', employees:employees});
+  let auth = req.cookies.auth;
+  fetch('http://localhost:8080/manager/employee',{
+    method: 'GET',
+    headers: {
+      Authorization: auth
+    }}).then(response => response.json())
+      .then(data => {
+        res.render('employPage', { title: 'Zlagoda', employees: data});
+
+      })
+      .catch(err => console.log(err));
 });
 
 
