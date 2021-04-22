@@ -33,27 +33,12 @@
             </h2>
             <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                    <table class="table table-hover">
-                        <thead>
-                        <tr>
-                            <th scope="col">Check number</th>
-                            <th scope="col">Employee Id</th>
-                            <th scope="col">Card number</th>
-                            <th scope="col">Print date</th>
-                            <th scope="col">Total sum</th>
-                            <th scope="col">Vat</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for check in checks %}
-                            <tr>
-                                {% for key in check %}
-                                    <td>{{ key }} </td>
-                                {% endfor %}
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
+                    <fieldset id="select-check-number">
+                        <legend>Choose check number</legend>
+                        <label for="check-number-selector" class="visually-hidden">Check number: </label>
+                        <input type = "text" id="check-number-selector" name="check"></input>
+                        <button type="submit" onclick="checkInfo()" class="button minimal">Choose</button></fieldset>
+                    <div id ="table2"></div>
                </div>
             </div>
         </div>
@@ -65,27 +50,12 @@
             </h2>
             <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                    <table class="table table-hover">
-                        <thead>
-                        <tr>
-                            <th scope="col">Check number</th>
-                            <th scope="col">Employee Id</th>
-                            <th scope="col">Card number</th>
-                            <th scope="col">Print date</th>
-                            <th scope="col">Total sum</th>
-                            <th scope="col">Vat</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for check in checks %}
-                            <tr>
-                                {% for key in check %}
-                                    <td>{{ key }} </td>
-                                {% endfor %}
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
+                    <fieldset id="select-client-surname">
+                        <legend>Введіть прізвище клієнта: </legend>
+                        <label for="client-surname-selector" class="visually-hidden">Client surname: </label>
+                        <input type = "text" id="client-surname-selector" ></input>
+                        <button type="submit" onclick="clientInfo()" class="button minimal">Пошук!</button></fieldset>
+                    <div id ="table3"></div>
                 </div>
             </div>
             <div class="accordion-item">
@@ -96,8 +66,12 @@
                 </h2>
                 <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        table query result
-                    </div>
+                        <fieldset id="select-client-discount">
+                            <legend>Введіть знижку : </legend>
+                            <label for="client-surname-selector" class="visually-hidden">Client surname: </label>
+                            <input type = "number" min="5" step = "5" max="15" value = "5" id="client-discount-selector" ></input>
+                            <button type="submit" onclick="clientWithDiscountInfo()" class="button minimal">Пошук!</button></fieldset>
+                        <div id ="table4"></div>                    </div>
                 </div>
         </div>
             <div class="accordion-item">
