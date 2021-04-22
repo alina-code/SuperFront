@@ -58,4 +58,39 @@ router.get("/clientsWithDiscount/:discount",function (req,res){
         })
         .catch(err => console.log(err));
 })
+
+router.get("/getCategories",function (req,res){
+    fetch('http://localhost:8080/cashier/categories', {
+        method: 'GET',
+        headers: {
+            Authorization: req.cookies.auth
+        }}).then(response => response.json())
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => console.log(err));
+})
+
+router.get("/productsFromCategory/:num", function(req,res){
+    fetch('http://localhost:8080/cashier/productsFromCategory/'+req.params.num, {
+        method: 'GET',
+        headers: {
+            Authorization: req.cookies.auth
+        }}).then(response => response.json())
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => console.log(err));
+})
+router.get("/productsFromCategory", function(req,res){
+    fetch('http://localhost:8080/cashier/products', {
+        method: 'GET',
+        headers: {
+            Authorization: req.cookies.auth
+        }}).then(response => response.json())
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => console.log(err));
+})
 module.exports = router;

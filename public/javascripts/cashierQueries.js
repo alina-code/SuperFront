@@ -54,6 +54,46 @@ function clientWithDiscountInfo(){
         .catch(err => console.log(err));
 }
 
+function findCategories() {
+    let select = document.getElementById('category-selector')
+    select.innerHTML=""
+    fetch("/cashier/getCategories").then(response => response.json())
+        .then(data => {
+
+            for(let i=0; i<data.length; i++){
+                let category = data[i].category_name;
+                let opt = document.createElement('option');
+                opt.value =  data[i].category_name;
+                opt.innerHTML =  data[i].category_name;
+                opt.id = "category"+data[i].category_number;
+                select.appendChild(opt);
+            }
+        })
+        .catch(err => console.log(err));
+
+}
+
+function goodsFromCategory() {
+    let category = document.getElementById('category-selector').value
+    let id = $('#category-selector').find('option:selected').attr('id').substr(8);
+
+    let uri = "/cashier/productsFromCategory/"+id;
+
+    fetch(uri).then(response => response.json())
+        .then(data => {
+            document.getElementById('table5').innerHTML = buildTableFromJson(data)
+        })
+        .catch(err => console.log(err));}
+
+function goods() {
+    let uri = "/cashier/productsFromCategory/";
+
+    fetch(uri).then(response => response.json())
+        .then(data => {
+            document.getElementById('table6').innerHTML = buildTableFromJson(data)
+        })
+        .catch(err => console.log(err));}
+
 // возвращает куки с указанным name,
 // или undefined, если ничего не найдено
 function getCookie(name) {
