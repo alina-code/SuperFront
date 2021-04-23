@@ -12,7 +12,8 @@
         </h2>
         <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
             <div class="accordion-body">
-                table query result
+                <button type="submit" onclick="cashiersBySurname()" class="button minimal">Скласти список</button>
+                <table id="table1"></table>
             </div>
         </div>
     </div>
@@ -24,8 +25,12 @@
         </h2>
         <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
             <div class="accordion-body">
-                table query result
-            </div>
+                <fieldset id="category-selection">
+                    <legend>Оберіть категорію: </legend>
+                    <label for="category-selector" class="visually-hidden">Категорія: </label>
+                    <select id="category-selector"></select>
+                    <button type="submit" onclick="goodsFromCategory()" class="button minimal">Скласти список</button></fieldset>
+                <div id ="table2"></div>                           </div>
         </div>
     </div>
     <div class="accordion-item">
@@ -36,7 +41,11 @@
         </h2>
         <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
             <div class="accordion-body">
-                table query result
+                <fieldset id="surname-selection">
+                    <legend>Введіть прізвище працівника:</legend>
+                    <input type = "text" id="surname-input" name="surname"></input>
+                    <button type="submit" onclick="employeeBySurname()" class="button minimal">Знайти</button></fieldset>
+                <div id ="table3"></div>
             </div>
         </div>
         <div class="accordion-item">
@@ -317,5 +326,7 @@
         </div>
     </div>
 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src ="javascripts/managerQueries.js">
 
 {% endblock %}
