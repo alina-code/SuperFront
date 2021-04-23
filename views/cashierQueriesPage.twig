@@ -34,10 +34,10 @@
             <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
                     <fieldset id="select-check-number">
-                        <legend>Choose check number</legend>
+                        <legend>Введіть номер чека:</legend>
                         <label for="check-number-selector" class="visually-hidden">Check number: </label>
                         <input type = "text" id="check-number-selector" name="check"></input>
-                        <button type="submit" onclick="checkInfo()" class="button minimal">Choose</button></fieldset>
+                        <button type="submit" onclick="checkInfo()" class="button minimal">Вивести інформацію</button></fieldset>
                     <div id ="table2"></div>
                </div>
             </div>
@@ -110,8 +110,15 @@
                 </h2>
                 <div id="collapse7" class="accordion-collapse collapse" aria-labelledby="heading7" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        table query result
-                    </div>
+                        <fieldset id="select-prom-sortby">
+                            <legend>Сортувати акційні товари за: </legend>
+                            <label for="sortby-selector" class="visually-hidden">Сортувати за: </label>
+                            <select id="sortby-selector">
+                                <option selected value="products_number">кількістю одиниць</option>
+                                <option value="product_name">назвою</option>
+                            </select>
+                            <button type="submit" onclick="promgoods()" class="button minimal">Скласти список</button></fieldset>
+                        <div id ="table7"></div>                           </div>
                 </div>
             </div>
             <div class="accordion-item">
@@ -121,11 +128,18 @@
                     </button>
                 </h2>
                 <div id="collapse8" class="accordion-collapse collapse" aria-labelledby="heading8" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        table query result
+                <div class="accordion-body">
+                    <fieldset id="select-not-prom-sortby">
+                        <legend>Сортувати не акційні товари за: </legend>
+                        <label for="sortby-not-selector" class="visually-hidden">Сортувати за: </label>
+                        <select id="sortby-not-selector">
+                            <option selected value="products_number">кількістю одиниць</option>
+                            <option value="product_name">назвою</option>
+                        </select>
+                        <button type="submit" onclick="notpromgoods()" class="button minimal">Скласти список</button></fieldset>
+                    <div id ="table8"></div>
                     </div>
                 </div>
-            </div>
             <div class="accordion-item">
                 <h2 class="accordion-header" id="heading9">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse9" aria-expanded="false" aria-controls="collapse9">
@@ -133,9 +147,13 @@
                     </button>
                 </h2>
                 <div id="collapse9" class="accordion-collapse collapse" aria-labelledby="heading9" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        table query result
-                    </div>
+                        <div class="accordion-body">
+                            <fieldset id="select-check-number-2">
+                                <legend>Введіть номер чека:</legend>
+                                <input type = "text" id="check-number-selector-2" name="check"></input>
+                                <button type="submit" onclick="checkProductsInfo()" class="button minimal">Choose</button></fieldset>
+                            <div id ="table9"></div>
+                        </div>
                 </div>
             </div>
             <div class="accordion-item">
@@ -146,7 +164,11 @@
                 </h2>
                 <div id="collapse11" class="accordion-collapse collapse" aria-labelledby="heading11" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        table query result
+                        <fieldset id="select-upc">
+                            <legend>Введіть UPC:</legend>
+                            <input type = "text" id="upc-selector" name="upc"></input>
+                            <button type="submit" onclick="productByUpc()" class="button minimal">Знайти</button></fieldset>
+                        <div id ="table11"></div>
                     </div>
                 </div>
             </div>

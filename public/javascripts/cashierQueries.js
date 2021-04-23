@@ -94,6 +94,26 @@ function goods() {
         })
         .catch(err => console.log(err));}
 
+function promgoods() {
+    let sortBy = document.getElementById('sortby-selector').value;
+    //let sortBy = $('#sortby-selector').find('option:selected').attr('sortBy').substr(8);
+    let uri = "/cashier/promotionalProducts/"+sortBy;
+    fetch(uri).then(response => response.json())
+        .then(data => {
+            document.getElementById('table7').innerHTML = buildTableFromJson(data)
+        })
+        .catch(err => console.log(err));}
+
+function notpromgoods() {
+    let sortBy = document.getElementById('sortby-not-selector').value;
+    //let sortBy = $('#sortby-selector').find('option:selected').attr('sortBy').substr(8);
+    let uri = "/cashier/notPromotionalProducts/"+sortBy;
+    fetch(uri).then(response => response.json())
+        .then(data => {
+            document.getElementById('table8').innerHTML = buildTableFromJson(data)
+        })
+        .catch(err => console.log(err));}
+
 // возвращает куки с указанным name,
 // или undefined, если ничего не найдено
 function getCookie(name) {
@@ -126,4 +146,32 @@ function buildTableFromJson(data){
     });
     html += '</table>';
     return html;
+}
+
+function checkProductsInfo() {
+    let checkNumber = document.getElementById('check-number-selector-2').value;
+
+    let uri = "/productsInReceipt/"+checkNumber;
+    console.log(uri);
+
+    fetch(uri).then(response => response.json())
+        .then(data => {
+            document.getElementById('table9').innerHTML = buildTableFromJson(data)
+        })
+        .catch(err => console.log(err));
+
+}
+
+function productByUpc() {
+    let upc = document.getElementById('upc-selector').value;
+
+    let uri = "/priceAndQuantityByUpc/"+upc;
+    console.log(uri);
+
+    fetch(uri).then(response => response.json())
+        .then(data => {
+            document.getElementById('table11').innerHTML = buildTableFromJson(data)
+        })
+        .catch(err => console.log(err));
+
 }

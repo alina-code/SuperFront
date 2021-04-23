@@ -1,4 +1,5 @@
 function deleteCategory(category_id){
+    alert('delete category '+category_id);
     let uri = "/categories/delete/"+category_id;
 
     fetch(uri).then(response => response.json())
@@ -12,4 +13,8 @@ function deleteCategory(category_id){
         })
         .catch(err => console.log(err));
 
+}
+
+function addCategory(){
+    alert('add category');
 }
