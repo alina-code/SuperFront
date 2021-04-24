@@ -76,6 +76,24 @@ router.get('/manager-queries', function(req, res, next) {
   res.render('managerQueriesPage', { title: 'Zlagoda'});
 });
 
+router.get('/addCheck', function(req, res, next) {
+
+  let auth = req.cookies.auth;
+  fetch('http://localhost:8080/cashier/storeProducts',{
+    method: 'GET',
+    headers: {
+      Authorization: auth
+    }}).then(response => response.json())
+      .then(data => {
+        res.render('addCheck', { title: 'Zlagoda', products: data});
+
+      })
+      .catch(err => console.log(err));
+
+
+
+});
+
 router.get('/products', function(req, res, next) {
 
   let auth = req.cookies.auth;
@@ -123,10 +141,5 @@ router.get('/employ', function(req, res, next) {
 });
 
 
-router.get('/error', function(req, res, next) {
-  // get product data
-
-  res.render('error', { message: 'Error'});
-});
 
 module.exports = router;

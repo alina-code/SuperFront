@@ -1,0 +1,43 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+
+<h1 style = "margin-top: 30px;">Add check</h1>
+
+<form>
+
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">З картою клієнта: </label>
+    </div>
+    <div class="form-group" id = "clientCardInput" >
+        <label for="inputCardNumber">Карта клієнта: </label>
+        <input type="text" class="form-control" id="inputCardNumber" aria-describedby="emailHelp" placeholder="Enter card number">
+    </div>
+
+    <button type = "button" id="openAddProductButton" class="btn btn-success btn-block" onclick="openAddProduct()"> + Додати товар </button>
+
+    <div class="form-group" id = "addStoreProductDiv" >
+        <label for="addStoreProduct">Додати продукт: </label>
+        <select  class="form-control" id="storeProductSelect"  >
+            {% for product in products %}
+                <option prom = {{ product.promotional_product }}, count={{ product.products_number}} , id = {{ product.upc}} , price = {{ product.selling_price}}, name={{ product.product_name }}>{{ product.upc}}, {{ product.product_name }} </option>
+            {% endfor %}
+        </select>
+        <label for="productsCount">Кількість: </label>
+        <input id ="productsCount" type="number" min = "1", step="1" max = "$('#storeProductSelect').find('option:selected').attr('count')" value = "1">
+
+        <button type = "button" class="btn btn-outline-success" onclick="addProductToCheck()">Додати до чеку</button>
+
+    </div>
+
+    <div id ="purchases">
+
+    </div>
+    <button type="submit" onclick="sendForm()" class="btn btn-primary">Submit</button>
+</form>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src = "/javascripts/addChecks.js">
+{% endblock %}
