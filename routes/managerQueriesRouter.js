@@ -32,6 +32,7 @@ router.get("/productsOfCategory/:num", function(req,res){
 })
 
 router.get("/employee/:surname", function(req,res){
+    alert('router method');
     fetch('http://localhost:8080/manager/employee/'+req.params.surname, {
         method: 'GET',
         headers: {
@@ -39,6 +40,7 @@ router.get("/employee/:surname", function(req,res){
         }}).then(response => response.json())
         .then(data => {
             res.send(data);
+            alert(data);
         })
         .catch(err => console.log(err));
 })

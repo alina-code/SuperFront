@@ -22,7 +22,8 @@ function goodsFromCategory() {
         .catch(err => console.log(err));}
 
 function employeeBySurname(){
-    let surname = document.getElementById('surname-input');
+    let surname = document.getElementById('surname-input').value;
+    alert(surname);
     let uri = "/manager/employee/"+surname;
 
     fetch(uri).then(response => response.json())
