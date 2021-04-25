@@ -12,7 +12,7 @@ router.get("/receiptPrintByMe/:from/:to",function (req,res){
     fetch('http://localhost:8080/cashier/receiptPrintByMe/'+req.params.from+"/"+req.params.to, {
         method: 'GET',
         headers: {
-            //Authorization: auth
+            Authorization: auth
         }}).then(response => response.json())
         .then(data => {
             res.send(data);
@@ -26,7 +26,7 @@ router.get("/checkInfo/:checkN",function (req,res){
     fetch('http://localhost:8080/cashier/receipt/'+req.params.checkN, {
         method: 'GET',
         headers: {
-            //Authorization: auth
+            Authorization: auth
         }}).then(response => response.json())
         .then(data => {
             res.send(data);
@@ -38,7 +38,7 @@ router.get("/clientInfo/:surname",function (req,res){
     fetch('http://localhost:8080/cashier/client/'+req.params.surname, {
         method: 'GET',
         headers: {
-            //Authorization: auth
+            Authorization: auth
         }}).then(response => response.json())
         .then(data => {
             res.send(data);
@@ -51,7 +51,7 @@ router.get("/clientsWithDiscount/:discount",function (req,res){
     fetch('http://localhost:8080/cashier/client/discount/'+req.params.discount, {
         method: 'GET',
         headers: {
-            //Authorization: auth
+            Authorization: auth
         }}).then(response => response.json())
         .then(data => {
             res.send(data);
@@ -63,7 +63,7 @@ router.get("/getCategories",function (req,res){
     fetch('http://localhost:8080/cashier/categories', {
         method: 'GET',
         headers: {
-            //Authorization: req.cookies.auth
+            Authorization: req.cookies.auth
         }}).then(response => response.json())
         .then(data => {
             res.send(data);
@@ -75,7 +75,7 @@ router.get("/productsFromCategory/:num", function(req,res){
     fetch('http://localhost:8080/cashier/productsFromCategory/'+req.params.num, {
         method: 'GET',
         headers: {
-            //Authorization: req.cookies.auth
+            Authorization: req.cookies.auth
         }}).then(response => response.json())
         .then(data => {
             res.send(data);
@@ -86,7 +86,7 @@ router.get("/productsFromCategory", function(req,res){
     fetch('http://localhost:8080/cashier/products', {
         method: 'GET',
         headers: {
-            //Authorization: req.cookies.auth
+            Authorization: req.cookies.auth
         }}).then(response => response.json())
         .then(data => {
             res.send(data);
@@ -99,7 +99,7 @@ router.get("/promotionalProducts/:sortBy", function(req,res){
     fetch('http://localhost:8080/cashier/promotionalProducts/'+req.params.sortBy, {
         method: 'GET',
         headers: {
-            //Authorization: req.cookies.auth
+            Authorization: req.cookies.auth
         }}).then(response => response.json())
         .then(data => {
             res.send(data);
@@ -111,7 +111,19 @@ router.get("/notPromotionalProducts/:sortBy", function(req,res){
     fetch('http://localhost:8080/cashier/notPromotionalProducts/'+req.params.sortBy, {
         method: 'GET',
         headers: {
-            //Authorization: req.cookies.auth
+            Authorization: req.cookies.auth
+        }}).then(response => response.json())
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => console.log(err));
+})
+
+router.get("/info", function(req,res){
+    fetch('http://localhost:8080/cashier/', {
+        method: 'GET',
+        headers: {
+            Authorization: req.cookies.auth
         }}).then(response => response.json())
         .then(data => {
             res.send(data);
@@ -124,7 +136,7 @@ router.get("/productsInReceipt/:checkN",function (req,res){
     fetch('http://localhost:8080/cashier/productsInReceipt/'+req.params.checkN, {
         method: 'GET',
         headers: {
-            //Authorization: auth
+            Authorization: auth
         }}).then(response => response.json())
         .then(data => {
             res.send(data);
@@ -137,7 +149,7 @@ router.get("/priceAndQuantityByUpc/:upc",function (req,res){
     fetch('http://localhost:8080/cashier/priceAndQuantityByUpc/'+req.params.upc, {
         method: 'GET',
         headers: {
-            //Authorization: auth
+            Authorization: auth
         }}).then(response => response.json())
         .then(data => {
             res.send(data);
@@ -145,22 +157,42 @@ router.get("/priceAndQuantityByUpc/:upc",function (req,res){
         .catch(err => console.log(err));
 })
 
-router.post("/cashier/check", function (req, res){
-        fetch('http://localhost:8080/cashier/receipt', {
+router.post("/check", function (req, res){
+        let card ;
+        if(req.body.card_number=="")
+            card ={}
+        else card = {card_number: req.body.card_number}
+        let prods = req.body.products;
+
+    fetch('http://localhost:8080/cashier/receipt', {
             method: 'POST',
             headers: {
+                'Content-Type': 'application/json',
                 Authorization: req.cookies.auth
-            }}).then(response => response.json())
+            },
+            body: JSON.stringify(card) }).then(response =>
+                     response.json())
             .then(data => {
-                    fetch('http://localhost:8080/cashier/products', {
+                if(data.status==500) {
+                    res.send("It seems this client does not exist!")
+                    return;
+                }
+
+                    for (let i = 0; i < prods.length; i++)
+                        prods[i].check_number = data.check_number;
+
+
+                    fetch('http://localhost:8080/cashier/goods', {
                         method: 'POST',
                         headers: {
+                            'Content-Type': 'application/json',
                             Authorization: req.cookies.auth
-                        }}).then(response => response.json())
-                        .then(data => {
-
+                        },
+                        body: JSON.stringify(prods)}).then(response => response.json())
+                        .then(data2 => {
+                            res.send("Your check was created successfully! Номер чеку: "+ data.check_number )
                         });
-            })
+           })
             .catch(err => console.log(err));
 }
 

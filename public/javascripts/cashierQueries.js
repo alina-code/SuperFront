@@ -114,14 +114,7 @@ function notpromgoods() {
         })
         .catch(err => console.log(err));}
 
-// возвращает куки с указанным name,
-// или undefined, если ничего не найдено
-function getCookie(name) {
-    let matches = document.cookie.match(new RegExp(
-        "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-    ));
-    return matches ? decodeURIComponent(matches[1]) : undefined;
-}
+
 
 function reformatDate(dateStr)
 {
@@ -166,7 +159,6 @@ function productByUpc() {
     let upc = document.getElementById('upc-selector').value;
 
     let uri = "/cashier/priceAndQuantityByUpc/"+upc;
-    console.log(uri);
 
     fetch(uri).then(response => response.json())
         .then(data => {
@@ -175,5 +167,18 @@ function productByUpc() {
             document.getElementById('table11').style.visibility = 'visible';
         })
         .catch(err => console.log(err));
+
+}
+function getEmplInfo() {
+    let uri = "/cashier/info";
+
+    fetch(uri).then(response => response.json())
+        .then(data => {
+
+            document.getElementById('tableWithInfo').innerHTML = buildTableFromJson(data);
+
+        })
+        .catch(err => console.log(err));
+
 
 }
