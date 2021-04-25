@@ -48,7 +48,7 @@ router.get('/categories', function(req, res, next) {
   fetch('http://localhost:8080/manager/categories',{
     method: 'GET',
     headers: {
-        Authorization: auth
+        //Authorization: auth
     }}).then(response => response.json())
       .then(data => {
         console.log(data);
