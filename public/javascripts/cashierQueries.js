@@ -21,7 +21,27 @@ function checkInfo() {
 
     fetch(uri).then(response => response.json())
         .then(data => {
-            document.getElementById('table2').innerHTML = buildTableFromJson(data)
+            if(data.length==0){
+                document.getElementById('table2').innerHTML = "<p> It seems there is no check whith this number </p>"
+
+            }
+            else {
+                document.getElementById('table2').setAttribute('checkId', checkNumber);
+                document.getElementById('table2').innerHTML = buildTableFromJson(data)
+                document.getElementById('table21').hidden = false;
+                checkProdInfo();
+            }
+        })
+        .catch(err => console.log(err));
+
+}
+function checkProdInfo(){
+
+    let checkId =document.getElementById('table2').getAttribute('checkId');
+
+    fetch('/cashier/checkProdInfo/'+checkId).then(response => response.json())
+        .then(data => {
+            document.getElementById('table21').innerHTML = buildTableFromJson(data)
         })
         .catch(err => console.log(err));
 
@@ -162,9 +182,16 @@ function productByUpc() {
 
     fetch(uri).then(response => response.json())
         .then(data => {
-            document.getElementById('selling-price').innerHTML = data.selling_price;
-            document.getElementById('items-available').innerHTML = data.products_number;
-            document.getElementById('table11').style.visibility = 'visible';
+            if(data.length==0){
+                alert("No product with such upc!");
+                document.getElementById('table11').style.visibility = 'hidden'
+
+            }
+            else {
+                document.getElementById('selling-price').innerHTML = data[0].selling_price;
+                document.getElementById('items-available').innerHTML = data[0].products_number;
+                document.getElementById('table11').style.visibility = 'visible';
+            }
         })
         .catch(err => console.log(err));
 

@@ -48,18 +48,16 @@ router.get('/categories', function(req, res, next) {
   fetch('http://localhost:8080/manager/categories',{
     method: 'GET',
     headers: {
-      //Authorization: auth
+        Authorization: auth
     }}).then(response => response.json())
       .then(data => {
+        console.log(data);
         res.render('categoriesPage', { title: 'Zlagoda', categories: data});
       })
       .catch(err => console.log(err));
 });
 
 router.get('/checks', function(req, res, next) {
-  let checks = [{check_number:"1", id_employee:"1", card_number:"1", print_date:"17-04-2021", total_sum:"100", vat:"12"},
-    {check_number:"2", id_employee:"3", card_number:"4", print_date:"12-04-2021", total_sum:"109", vat:"52"}];
-
   res.render('checksPage', { title: 'Zlagoda', checks:checks});
 });
 
