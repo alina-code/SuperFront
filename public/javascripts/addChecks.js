@@ -2,37 +2,57 @@ let goods =[];
 let goodsLong =[];
 
 function sendForm() {
+ if(goods.length==0 ) {
+     alert("Please add some goods to check!");
+     return;
+ }
 let card = document.getElementById('inputCardNumber').value;
 let data = {card_number: card,
             products: goods}
-
-goods = [];
 fetch("/cashier/check",{
     method: 'POST',
-    body: JSON.stringify(data) }
-    ).then((res)=>console.log(res))
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    body: JSON.stringify(data)}
+    ).then(res=>res.text())
+     .then(data => {
+    alert(data)
+    })
     .catch((err)=>console.log(err))
 
+    goods = [];
+    goodsLong = []
+    document.getElementById("purchases").innerHTML=buildTableFromJson(goodsLong)
 
 }
 
 function addProductToCheck() {
     let option =  $('#storeProductSelect').find('option:selected');
     let amount  = parseInt(document.getElementById('productsCount').value);
-    console.log(amount, productsAvailable())
-    if(amount > productsAvailable() || totalAmount(option.attr('id'), amount) >productsAvailable())
+    if(amount > productsAvailable() || totalAmount(option.attr('id'), amount) >productsAvailable()) {
         alert("Введена кількість товару перевищує його наявність!")
-    else {
+        return;
+    }
 
-        goods.push({upc: option.attr('id'),
-                    product_number: amount});
         goodsLong.push({
             upc: option.attr('id'),
             product_name: option.attr('name'),
             product_number: amount,
         })
-    }
-    document.getElementById("purchases").innerHTML=buildTableFromJson(goodsLong)
+        document.getElementById("purchases").innerHTML=buildTableFromJson(goodsLong)
+
+        for(let i = 0; i<goods.length; i++) {
+            if (goods[i].upc == option.attr('id')) {
+                goods[i].product_number += amount
+                return;
+            }
+        }
+        goods.push({upc: option.attr('id'),
+                    product_number: amount});
+
+        console.log(goods);
+
 
 }
 
