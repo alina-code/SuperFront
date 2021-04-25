@@ -157,6 +157,19 @@ router.get("/priceAndQuantityByUpc/:upc",function (req,res){
         .catch(err => console.log(err));
 })
 
+router.get('/checkProdInfo/:check', function (req,res){
+    let auth = req.cookies.auth;
+    fetch('http://localhost:8080/cashier/sales/'+req.params.check, {
+        method: 'GET',
+        headers: {
+            Authorization: auth
+        }}).then(response => response.json())
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => console.log(err));
+})
+
 router.post("/check", function (req, res){
         let card ;
         if(req.body.card_number=="")
