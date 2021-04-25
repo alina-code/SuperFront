@@ -7,9 +7,6 @@ const cookieParser = require('cookie-parser');
 router.use(cookieParser());
 
 
-
-
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('login', { title: 'Zlagoda' });
@@ -46,14 +43,17 @@ router.get('/cashier-queries', function(req, res, next) {
   res.render('cashierQueriesPage', { title: 'Zlagoda'});
 });
 
-router.get('/cashier', function(req, res, next) {
-  res.render('cashierQueryPage', { title: 'Zlagoda'});
-});
-
 router.get('/categories', function(req, res, next) {
-  let categories = [{category_number: "1", category_name:"category1"},{category_number: "2", category_name:"category2"},{category_number: "3", category_name:"category3"}];
-
-  res.render('categoriesPage', { title: 'Zlagoda', categories:categories});
+  let auth = req.cookies.auth;
+  fetch('http://localhost:8080/manager/categories',{
+    method: 'GET',
+    headers: {
+      //Authorization: auth
+    }}).then(response => response.json())
+      .then(data => {
+        res.render('categoriesPage', { title: 'Zlagoda', categories: data});
+      })
+      .catch(err => console.log(err));
 });
 
 router.get('/checks', function(req, res, next) {
@@ -64,10 +64,16 @@ router.get('/checks', function(req, res, next) {
 });
 
 router.get('/clients', function(req, res, next) {
-  let clients = [{card_number:"1", cust_surname:"Nemyria", cust_name:"Nastia", cust_patronymic: "Maksymivna", phone_number: "0978856643", city: "Kyiv", zip_code: "3456", discount:"10"},
-    {card_number:"2", cust_surname:"Markova", cust_name:"Julia", cust_patronymic: "Andriivna", phone_number: "0979879640", city: "Kyiv", zip_code: "0956", discount:"10"}];
-
-  res.render('clientsPage', { title: 'Zlagoda', clients:clients});
+  let auth = req.cookies.auth;
+  fetch('http://localhost:8080/manager/clients',{
+    method: 'GET',
+    headers: {
+      //Authorization: auth
+    }}).then(response => response.json())
+      .then(data => {
+        res.render('clientsPage', { title: 'Zlagoda', clients: data});
+      })
+      .catch(err => console.log(err));
 });
 
 router.get('/manager-queries', function(req, res, next) {
@@ -100,23 +106,21 @@ router.get('/products', function(req, res, next) {
   fetch('http://localhost:8080/cashier/products',{
     method: 'GET',
     headers: {
-      Authorization: auth
+      //Authorization: auth
     }}).then(response => response.json())
       .then(data => {
         res.render('productsPage', { title: 'Zlagoda', products: data});
-
       })
       .catch(err => console.log(err));
-
 });
 
 router.get('/store-products', function(req, res, next) {
 
   let auth = req.cookies.auth;
-  fetch('http://localhost:8080/cashier/storeProduct',{
+  fetch('http://localhost:8080/cashier/storeProducts',{
     method: 'GET',
     headers: {
-      Authorization: auth
+      //Authorization: auth
     }}).then(response => response.json())
       .then(data => {
         res.render('storeProductPage', { title: 'Zlagoda', store_products: data});
@@ -131,7 +135,7 @@ router.get('/employ', function(req, res, next) {
   fetch('http://localhost:8080/manager/employee',{
     method: 'GET',
     headers: {
-      Authorization: auth
+      //Authorization: auth
     }}).then(response => response.json())
       .then(data => {
         res.render('employPage', { title: 'Zlagoda', employees: data});

@@ -3,12 +3,8 @@ let router = express.Router();
 
 const fetch = require('node-fetch');
 
-
-
 const cookieParser = require('cookie-parser');
 router.use(cookieParser());
-router.use(express.json())
-
 
 router.get("/receiptPrintByMe/:from/:to",function (req,res){
     let auth = req.cookies.auth;
@@ -98,6 +94,7 @@ router.get("/productsFromCategory", function(req,res){
         .catch(err => console.log(err));
 })
 
+
 router.get("/promotionalProducts/:sortBy", function(req,res){
     fetch('http://localhost:8080/cashier/promotionalProducts/'+req.params.sortBy, {
         method: 'GET',
@@ -148,56 +145,26 @@ router.get("/priceAndQuantityByUpc/:upc",function (req,res){
         .catch(err => console.log(err));
 })
 
-
-router.post("/check", function (req, res){
-        let card ;
-        if(req.body.card_number=="")
-        card ={}
-    else card = {card_number: req.body.card_number}
-    let prods = req.body.products;
-
-
-
-    fetch('http://localhost:8080/cashier/receipt', {
+router.post("/cashier/check", function (req, res){
+        fetch('http://localhost:8080/cashier/receipt', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
                 Authorization: req.cookies.auth
-            },
-            body: JSON.stringify(card) }).then(response =>{
-                if(response.status !=200){
-                    res.status(500);
-                    res.send("Looks like there is no client with this client card");
-                    return;
-                }
-                response.json()
-                console.log(response);
-                console.log(response.body)
-                     })
+            }}).then(response => response.json())
             .then(data => {
-                console.log(data)
-                   for (let i = 0; i < prods.length; i++)
-                    prods[i].check_number = data.check_number;
-                   console.log(prods)
-
-/*
-                    fetch('http://localhost:8080/cashier/goods', {
+                    fetch('http://localhost:8080/cashier/products', {
                         method: 'POST',
                         headers: {
-                            'Content-Type': 'application/json',
-                             Authorization: req.cookies.auth
-                        },
-                        body: JSON.stringify(prods)
-                    }).then(response => response.text())
-                        .then(data2 => {
-                            res.send("Your check was successfully created! ");
-                        });*/
+                            Authorization: req.cookies.auth
+                        }}).then(response => response.json())
+                        .then(data => {
+
+                        });
             })
             .catch(err => console.log(err));
-
 }
 
-
 )
+
 
 module.exports = router;

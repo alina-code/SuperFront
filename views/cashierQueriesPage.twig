@@ -168,7 +168,20 @@
                             <legend>Введіть UPC:</legend>
                             <input type = "text" id="upc-selector" name="upc"></input>
                             <button type="submit" onclick="productByUpc()" class="button minimal">Знайти</button></fieldset>
-                        <div id ="table11"></div>
+                        <table id ="table11" class="table table-hover" style="visibility: hidden">
+                            <thead>
+                            <tr>
+                                <th scope="col">Selling price</th>
+                                <th scope="col">Items available</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td id="selling-price"></td>
+                                <td id="items-available"></td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

@@ -6,31 +6,27 @@
     <table class="table table-hover">
         <thead>
         <tr>
-
             <th scope="col">UPC</th>
-            <th scope="col">UPC prom</th>
             <th scope="col">Product Id</th>
-            <th scope="col">Selling price</th>
             <th scope="col">Selling price</th>
             <th scope="col">Products number</th>
             <th scope="col">Promotional product</th>
             <th scope="col">Product name</th>
-            <th scope="col">Description</th>
             <th scope="col"> </th>
         </tr>
         </thead>
         <tbody>
         {% for store_product in store_products %}
-            <tr>
-
+            <tr id = {{  store_product.upc }}>
                 {% for key in store_product %}
-                    <td>{{ key }} </td>
+                    <td>{{ key }}</td>
                 {% endfor %}
                 <td><button type="button" class="btn btn-outline-success btn-sm">Edit</button>
-                    <button type="button" class="btn btn-outline-danger btn-sm" onclick="">Delete</button> </td>
+                    <button type="button" class="btn btn-outline-danger btn-sm" onclick="deleteStoreProduct('{{  store_product.upc  }}')">Delete</button> </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src ="javascripts/delition.js">
 {% endblock %}
