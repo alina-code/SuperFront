@@ -176,7 +176,7 @@ router.get("/clients/:percent",function (req,res){
     fetch('http://localhost:8080/manager/clients/'+req.params.percent, {
         method: 'GET',
         headers: {
-            Authorization: auth
+            //Authorization: auth
         }}).then(response => response.json())
         .then(data => {
             res.send(data);
@@ -189,7 +189,7 @@ router.get("/productByUpc/:upc",function (req,res){
     fetch('http://localhost:8080/manager/productByUpc/'+req.params.upc, {
         method: 'GET',
         headers: {
-            Authorization: auth
+            //Authorization: auth
         }}).then(response => response.json())
         .then(data => {
             res.send(data);

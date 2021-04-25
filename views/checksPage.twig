@@ -17,16 +17,17 @@
         </thead>
         <tbody>
         {% for check in checks %}
-            <tr>
+            <tr id="{{ check.check_number }}">
                 {% for key in check %}
                     <td>{{ key }} </td>
                 {% endfor %}
-                <td><button type="button" class="btn btn-outline-success btn-sm">Edit</button>
-                    <button type="button" class="btn btn-outline-danger btn-sm" onclick="">Delete</button> </td>
+                <td><button type="button" class="btn btn-outline-danger btn-sm" onclick="deleteCheck({{ check.check_number }})">Delete</button> </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src ="javascripts/delition.js">
+        <script src ="javascripts/addition.js">
 {% endblock %}

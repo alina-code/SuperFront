@@ -24,15 +24,17 @@
         </thead>
         <tbody>
         {% for employee in employees %}
-            <tr>
+            <tr id="{{ employee.id_employee }}">
                 {% for key in employee %}
                     <td>{{ key }} </td>
                 {% endfor %}
                 <td><button type="button" class="btn btn-outline-success btn-sm">Edit</button>
-                    <button type="button" class="btn btn-outline-danger btn-sm" onclick="">Delete</button> </td>
+                    <button type="button" class="btn btn-outline-danger btn-sm" onclick="deleteEmployee({{ employee.id_employee }})">Delete</button> </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src ="javascripts/delition.js">
+        <script src ="javascripts/addition.js">
 {% endblock %}

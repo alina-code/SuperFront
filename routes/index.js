@@ -88,7 +88,7 @@ router.get('/addCheck', function(req, res, next) {
   fetch('http://localhost:8080/cashier/storeProducts',{
     method: 'GET',
     headers: {
-      Authorization: auth
+      //Authorization: auth
     }}).then(response => response.json())
       .then(data => {
         res.render('addCheck', { title: 'Zlagoda', products: data});

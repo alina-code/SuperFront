@@ -1,7 +1,7 @@
 {% extends 'layout.twig' %}
 {% block body %}
 
-    <h1 style = "margin-top: 30px;">Clients</h1>
+    <h1 style = "margin-top: 30px;">Customers</h1>
     <button type="button" class="btn btn-primary" style="margin-top: 30px; margin-bottom: 30px">Add client card</button>
     <table class="table table-hover">
         <thead>
@@ -19,15 +19,17 @@
         </thead>
         <tbody>
         {% for client in clients %}
-            <tr>
+            <tr id="{{ client.card_number }}">
                 {% for key in client %}
                     <td>{{ key }} </td>
                 {% endfor %}
                 <td><button type="button" class="btn btn-outline-success btn-sm">Edit</button>
-                    <button type="button" class="btn btn-outline-danger btn-sm" onclick="">Delete</button> </td>
+                    <button type="button" class="btn btn-outline-danger btn-sm" onclick="deleteClient({{ client.card_number }})">Delete</button> </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src ="javascripts/delition.js">
+        <script src ="javascripts/addition.js">
 {% endblock %}
