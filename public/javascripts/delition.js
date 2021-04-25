@@ -4,7 +4,7 @@ function deleteCategory(category_id){
     fetch(uri).then(response => response.text())
         .then(data=> {
             alert(data);
-            document.getElementById('')
+            document.getElementById(category_id).remove();
         }).catch(err => console.log(err));
 
 }

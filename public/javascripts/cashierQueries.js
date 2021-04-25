@@ -182,9 +182,16 @@ function productByUpc() {
 
     fetch(uri).then(response => response.json())
         .then(data => {
-            document.getElementById('selling-price').innerHTML = data.selling_price;
-            document.getElementById('items-available').innerHTML = data.products_number;
-            document.getElementById('table11').style.visibility = 'visible';
+            if(data.length==0){
+                alert("No product with such upc!");
+                document.getElementById('table11').style.visibility = 'hidden'
+
+            }
+            else {
+                document.getElementById('selling-price').innerHTML = data[0].selling_price;
+                document.getElementById('items-available').innerHTML = data[0].products_number;
+                document.getElementById('table11').style.visibility = 'visible';
+            }
         })
         .catch(err => console.log(err));
 
