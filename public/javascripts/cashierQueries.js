@@ -151,7 +151,7 @@ function buildTableFromJson(data){
 function checkProductsInfo() {
     let checkNumber = document.getElementById('check-number-selector-2').value;
 
-    let uri = "/productsInReceipt/"+checkNumber;
+    let uri = "/cashier/productsInReceipt/"+checkNumber;
     console.log(uri);
 
     fetch(uri).then(response => response.json())
@@ -165,12 +165,14 @@ function checkProductsInfo() {
 function productByUpc() {
     let upc = document.getElementById('upc-selector').value;
 
-    let uri = "/priceAndQuantityByUpc/"+upc;
+    let uri = "/cashier/priceAndQuantityByUpc/"+upc;
     console.log(uri);
 
     fetch(uri).then(response => response.json())
         .then(data => {
-            document.getElementById('table11').innerHTML = buildTableFromJson(data)
+            document.getElementById('selling-price').innerHTML = data.selling_price;
+            document.getElementById('items-available').innerHTML = data.products_number;
+            document.getElementById('table11').style.visibility = 'visible';
         })
         .catch(err => console.log(err));
 

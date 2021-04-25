@@ -94,7 +94,7 @@ router.get("/productsFromCategory", function(req,res){
         .catch(err => console.log(err));
 })
 
-<<<<<<< Updated upstream
+
 router.get("/promotionalProducts/:sortBy", function(req,res){
     fetch('http://localhost:8080/cashier/promotionalProducts/'+req.params.sortBy, {
         method: 'GET',
@@ -144,7 +144,7 @@ router.get("/priceAndQuantityByUpc/:upc",function (req,res){
         })
         .catch(err => console.log(err));
 })
-=======
+
 router.post("/cashier/check", function (req, res){
         fetch('http://localhost:8080/cashier/receipt', {
             method: 'POST',
@@ -165,6 +165,6 @@ router.post("/cashier/check", function (req, res){
 }
 
 )
->>>>>>> Stashed changes
+
 
 module.exports = router;
