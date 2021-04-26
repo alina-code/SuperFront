@@ -2,6 +2,7 @@
 {% block body %}
 
     <h1 style = "margin-top: 30px;">Checks</h1>
+    <a href="/addCheck" type="button" class="btn btn-primary" style="margin-top: 30px; margin-bottom: 30px">Add check</a>
     <table class="table table-hover">
         <thead>
         <tr>
@@ -20,7 +21,7 @@
                 {% for key in check %}
                     <td>{{ key }} </td>
                 {% endfor %}
-                <td><button type="button" class="btn btn-outline-danger btn-sm" onclick="deleteCheck({{ check.check_number }})">Delete</button> </td>
+                <td><button type="button" class="btn btn-outline-info btn-sm" onclick="info({{ check.check_number }})">Info</button> </td>
             </tr>
         {% endfor %}
         </tbody>
