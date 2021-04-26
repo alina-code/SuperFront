@@ -81,9 +81,15 @@ function productByUpc() {
 
     fetch(uri).then(response => response.json())
         .then(data => {
-            document.getElementById('selling-price').innerHTML = data.selling_price;
-            document.getElementById('items-available').innerHTML = data.products_number;
-            document.getElementById('table11').style.visibility = 'visible';
+            if(data.length ===0){
+                document.getElementById('table11').style.visibility = 'hidden';
+                alert("Product with this upc does not exists!")
+            }
+            else {
+                document.getElementById('selling-price').innerHTML = data[0].selling_price;
+                document.getElementById('items-available').innerHTML = data[0].products_number;
+                document.getElementById('table11').style.visibility = 'visible';
+            }
         })
         .catch(err => console.log(err));
 
@@ -177,10 +183,15 @@ function productByUpc2() {
 
     fetch(uri).then(response => response.json())
         .then(data => {
-            document.getElementById('selling-price-2').innerHTML = data.selling_price;
-            document.getElementById('items-available-2').innerHTML = data.products_number;
-            document.getElementById('product-name-2').innerHTML = data.product_name;
-            document.getElementById('characteristics-2').innerHTML = data.characteristics;
+            if(data.length==0){
+                document.getElementById('table27').style.visibility = 'hidden';
+                alert("Product with this upc does not exist!")
+            }
+
+            document.getElementById('selling-price-2').innerHTML = data[0].selling_price;
+            document.getElementById('items-available-2').innerHTML = data[0].products_number;
+            document.getElementById('product-name-2').innerHTML = data[0].product_name;
+            document.getElementById('characteristics-2').innerHTML = data[0].characteristics;
             document.getElementById('table27').style.visibility = 'visible';
         })
         .catch(err => console.log(err));

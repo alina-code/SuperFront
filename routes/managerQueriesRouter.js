@@ -96,7 +96,7 @@ router.get("/price-and-quantity-by-upc/:upc",function (req,res){
 })
 
 router.get("/promotionalProducts/:sortBy", function(req,res){
-    fetch('http://localhost:8080/cashier/promotionalProducts/'+req.params.sortBy, {
+    fetch('http://localhost:8080/manager/products/promotional/'+req.params.sortBy, {
         method: 'GET',
         headers: {
             Authorization: req.cookies.auth
@@ -108,7 +108,7 @@ router.get("/promotionalProducts/:sortBy", function(req,res){
 })
 
 router.get("/notPromotionalProducts/:sortBy", function(req,res){
-    fetch('http://localhost:8080/cashier/notPromotionalProducts/'+req.params.sortBy, {
+    fetch('http://localhost:8080/manager/products/'+req.params.sortBy, {
         method: 'GET',
         headers: {
             Authorization: req.cookies.auth
