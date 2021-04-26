@@ -113,20 +113,21 @@ router.get('/products', function(req, res, next) {
 });
 
 router.get('/store-products', function(req, res, next) {
-
-  let auth = req.cookies.auth;
   fetch('http://localhost:8080/cashier/storeProducts',{
     method: 'GET',
     headers: {
       //Authorization: auth
     }}).then(response => response.json())
       .then(data => {
+        let data2 = data;
         res.render('storeProductPage', { title: 'Zlagoda', store_products: data});
 
       })
       .catch(err => console.log(err));
 
 });
+
+
 
 router.get('/employ', function(req, res, next) {
   let auth = req.cookies.auth;

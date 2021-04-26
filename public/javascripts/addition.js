@@ -47,3 +47,25 @@ function addStoreProduct(){
 
 }
 
+function loadStoreProductAddition(form_id, opt_id){
+    let select = document.getElementById(opt_id);
+    select.innerHTML=""
+    fetch("/manager/getProducts").then(response => response.json())
+        .then(data => {
+            for(let i=0; i<data.length; i++){
+                let opt = document.createElement('option');
+                opt.value =  data[i].product_name;
+                opt.innerHTML =  data[i].id_product +", "+data[i].product_name;
+                opt.id = "product"+data[i].id_product;
+                select.appendChild(opt);
+            }
+        })
+        .catch(err => console.log(err));
+
+    document.getElementById(form_id).style.display = 'block';
+
+}
+
+function hideForm(id){
+    document.getElementById(id).style.display = 'none';
+}

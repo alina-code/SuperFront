@@ -48,7 +48,7 @@ router.get("/products", function(req,res){
     fetch('http://localhost:8080/manager/products', {
         method: 'GET',
         headers: {
-            Authorization: req.cookies.auth
+            //Authorization: req.cookies.auth
         }}).then(response => response.json())
         .then(data => {
             res.send(data);
@@ -61,7 +61,7 @@ router.get("/categories", function(req,res){
     fetch('http://localhost:8080/manager/categories', {
         method: 'GET',
         headers: {
-            Authorization: req.cookies.auth
+            //Authorization: req.cookies.auth
         }}).then(response => response.json())
         .then(data => {
             res.send(data);
@@ -150,7 +150,7 @@ router.get("/receipt/numberOf/:id/:from/:to",function (req,res){
     fetch('http://localhost:8080/manager/receipt/numberOf/'+req.params.id+"/"+req.params.from+"/"+req.params.to, {
         method: 'GET',
         headers: {
-            Authorization: auth
+            //Authorization: auth
         }}).then(response => response.json())
         .then(data => {
             res.send(data);
@@ -163,7 +163,7 @@ router.get("/clients",function (req,res){
     fetch('http://localhost:8080/manager/clients', {
         method: 'GET',
         headers: {
-            Authorization: auth
+            //Authorization: auth
         }}).then(response => response.json())
         .then(data => {
             res.send(data);
@@ -215,7 +215,7 @@ router.get("/getProducts",function (req,res){
     fetch('http://localhost:8080/manager/products', {
         method: 'GET',
         headers: {
-            Authorization: req.cookies.auth
+            //Authorization: req.cookies.auth
         }}).then(response => response.json())
         .then(data => {
             res.send(data);
