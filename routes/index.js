@@ -58,7 +58,34 @@ router.get('/categories', function(req, res, next) {
 });
 
 router.get('/checks', function(req, res, next) {
-  res.render('checksPage', { title: 'Zlagoda', checks:checks});
+
+  fetch('http://localhost:8080/manager/checks',{
+    method: 'GET',
+    headers: {
+      Authorization: req.cookies.auth
+    }}).then(response => response.json())
+      .then(data => {
+        res.render('checksPage', { title: 'Zlagoda', checks: data});
+      })
+      .catch(err => console.log(err));
+
+
+
+});
+router.get('/checksCashier', function(req, res, next) {
+
+  fetch('http://localhost:8080/cashier/checks',{
+    method: 'GET',
+    headers: {
+      Authorization: req.cookies.auth
+    }}).then(response => response.json())
+      .then(data => {
+        res.render('checksCashierPage', { title: 'Zlagoda', checks: data});
+      })
+      .catch(err => console.log(err));
+
+
+
 });
 
 router.get('/clients', function(req, res, next) {

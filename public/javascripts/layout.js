@@ -6,11 +6,13 @@ window.addEventListener("load", function(event) {
       document.getElementById('employeesPage').hidden=true;
       document.getElementById('categoriesPage').hidden=true;
       document.getElementById('clientsPage').hidden = true;
+      document.getElementById('checksPage').hidden = true;
+
   }
   else if(getCookie('role')=='MANAGER'){
       document.getElementById('cashierQueriesPage').hidden = true;
       document.getElementById('addCheckPage').hidden=true;
-      document.getElementById('checksPage').hidden=true;
+      document.getElementById('checksCashierPage').hidden=true;
   }
 
 
