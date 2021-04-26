@@ -8,20 +8,17 @@ function addCategory(){
 
     console.log(JSON.stringify(category));
 
-    fetch('http://localhost:8080/manager/category', {
+    fetch('/add/category', {
         method: 'POST',
-        mode: 'no-cors',
+       // mode: 'no-cors',
         headers: {
             'Content-Type':'application/json',
         },
         body:
             JSON.stringify(category)
 
-    }).then(response => {
-        if(response.status==200)
-            alert ("Category was added successfully! ");
-        else alert("Addition failed")
-    })
+    }).then(response => response.text())
+        .then(data=>alert(data))
         .catch(err => console.log(err));
 
 }

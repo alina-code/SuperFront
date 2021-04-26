@@ -12,7 +12,7 @@ router.get("/category/:category_id",function (req,res){
     fetch('http://localhost:8080/manager/category/'+req.params.category_id, {
         method: 'DELETE',
         headers: {
-            //Authorization: auth
+            Authorization: auth
         }}).then(response => {
         if(response.status==200)
             res.send("Category was deleted successfully! ");
