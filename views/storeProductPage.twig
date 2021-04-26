@@ -3,29 +3,38 @@
 
     <h1 style = "margin-top: 30px;">Store products</h1>
 
+<button type="button" onclick="loadStoreProductAddition('addStoreProductForm','selectProductId')" class="btn btn-info" style="margin-top: 30px; margin-bottom: 30px">Add new</button>
+
+<div id="addStoreProductForm" style="display: none">
 <div class="form-group" id = "storeProductInput" style="margin-top: 20px; margin-bottom: 20px">
-    <label for="inputProductUpc">Upc: </label>
+    <label for="inputStoreProductUpc">Upc: </label>
     <br>
-    <input type="text" class="form-control" id="inputSProductUpc" aria-describedby="emailHelp" placeholder="Enter upc">
+    <input type="text" class="form-control" id="inputStoreProductUpc" aria-describedby="emailHelp" placeholder="Enter upc">
     <br>
-    <label for="selectProductId">Select product id: </label>
+    <label for="selectProductId">Select product: </label>
     <select id = "selectProductId"class="form-select" aria-label="Default select example">
     </select>
-
+    <br>
+    <label for="inputStoreProductPrice">Selling price: </label>
+    <br>
+    <input type="text" class="form-control" id="inputStoreProductPrice" aria-describedby="emailHelp" placeholder="Enter selling price">
+    <br>
+    <label for="inputStoreProductsNumber">Products number: </label>
+    <br>
+    <input type="text" class="form-control" id="inputStoreProductsNumber" aria-describedby="emailHelp" placeholder="Enter products number">
+    <br>
+    <label for="selectProm">Select if the product is promotional: </label>
+    <select id = "selectProm"class="form-select" aria-label="Default select example">
+        <option selected value=false>not promotional</option>
+        <option value=true>promotional</option>
+    </select>
 </div>
 
+    <button type="button" onclick="addStoreProduct()" class="btn btn-primary" style="margin-top: 10px; margin-bottom: 30px">Add store product</button>
+    <button type="button" onclick="hideForm('addStoreProductForm')" class="btn btn-light" style="margin-top: 10px; margin-bottom: 30px">Hide form</button>
+</div>
 
-{
-
-"upc": "129a",
-"id_product": 7,
-"selling_price": 19.27,
-"products_number": 12,
-"promotional_product": false
-}
-
-    <button type="button" class="btn btn-primary" style="margin-top: 10px; margin-bottom: 30px">Add store product</button>
-    <table class="table table-hover">
+<table class="table table-hover">
         <thead>
         <tr>
             <th scope="col">UPC</th>
@@ -50,6 +59,7 @@
         </tbody>
     </table>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src ="javascripts/addition.js">
 <script src ="javascripts/delition.js">
-    <script src ="javascripts/addition.js">
+
 {% endblock %}
