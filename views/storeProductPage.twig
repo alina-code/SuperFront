@@ -23,14 +23,14 @@
     <br>
     <input type="text" class="form-control" id="inputStoreProductsNumber" aria-describedby="emailHelp" placeholder="Enter products number">
     <br>
-    <label for="selectProductId">Select if the product i promotional: </label>
-    <select id = "selectProductId"class="form-select" aria-label="Default select example">
+    <label for="selectProm">Select if the product is promotional: </label>
+    <select id = "selectProm"class="form-select" aria-label="Default select example">
         <option selected value=false>not promotional</option>
         <option value=true>promotional</option>
     </select>
 </div>
 
-    <button type="button" class="btn btn-primary" style="margin-top: 10px; margin-bottom: 30px">Add store product</button>
+    <button type="button" onclick="addStoreProduct()" class="btn btn-primary" style="margin-top: 10px; margin-bottom: 30px">Add store product</button>
     <button type="button" onclick="hideForm('addStoreProductForm')" class="btn btn-light" style="margin-top: 10px; margin-bottom: 30px">Hide form</button>
 </div>
 
