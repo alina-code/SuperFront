@@ -25,11 +25,14 @@ router.post('/login', function(req, res, next) {
       Authorization: auth
     }}).then(response => response.json())
       .then(data => {
+        if(typeof data[0] === "undefined")
+          res.redirect("/");
 
-        console.log(data)
-        res.cookie('role',data[0].authority )
-        res.cookie('auth', auth);
-        res.render('index', { title: 'Zlagoda', role: data[0].authority});
+        else {
+          res.cookie('role', data[0].authority)
+          res.cookie('auth', auth);
+          res.render('index', {title: 'Zlagoda', role: data[0].authority});
+        }
       })
       .catch(err => console.log(err));
 

@@ -55,7 +55,7 @@ router.get("/receipt/:check_id",function (req,res){
     fetch('http://localhost:8080/manager/receipt/'+req.params.check_id, {
         method: 'DELETE',
         headers: {
-            //Authorization: auth
+            Authorization: auth
         }}).then(response => {
         if(response.status==200)
             res.send("Check was deleted successfully! ");
