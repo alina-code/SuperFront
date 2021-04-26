@@ -12,7 +12,7 @@
     <input type="text" class="form-control" id="inputStoreProductUpc" aria-describedby="emailHelp" placeholder="Enter upc">
     <br>
     <label for="selectProductId">Select product: </label>
-    <select id = "selectProductId"class="form-select" aria-label="Default select example">
+    <select id = "selectProductId" class="form-select" aria-label="Default select example">
     </select>
     <br>
     <label for="inputStoreProductPrice">Selling price: </label>
@@ -52,7 +52,7 @@
                 {% for key in store_product %}
                     <td>{{ key }}</td>
                 {% endfor %}
-                <td><button type="button" class="btn btn-outline-success btn-sm">Edit</button>
+                <td>
                     <button type="button" class="btn btn-outline-danger btn-sm" onclick="deleteStoreProduct('{{  store_product.upc  }}')">Delete</button> </td>
             </tr>
         {% endfor %}

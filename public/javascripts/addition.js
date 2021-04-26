@@ -1,7 +1,6 @@
 
 function addCategory(){
     let categoryName = document.getElementById('inputCategoryName').value;
-    console.log(categoryName);
     let category = {
         category_name: categoryName
     }
@@ -10,7 +9,6 @@ function addCategory(){
 
     fetch('/add/category', {
         method: 'POST',
-       // mode: 'no-cors',
         headers: {
             'Content-Type':'application/json',
         },
@@ -26,7 +24,7 @@ function addCategory(){
 function addStoreProduct(){
 
     let upc = document.getElementById('inputStoreProductUpc').value;
-    let id_product = document.getElementById('selectProductId').value;
+    let id_product = $('#selectProductId').find('option:selected').attr('id').substr(7);
     let selling_price = document.getElementById('inputStoreProductPrice').value;
     let products_number = document.getElementById('inputStoreProductsNumber').value;
     let promotional_product = document.getElementById('selectProm').value;
@@ -38,7 +36,7 @@ function addStoreProduct(){
         promotional_product : promotional_product
     }
 
-    fetch('http://localhost:8080/manager/storeProduct', {
+    fetch('/add/storeProduct', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -46,12 +44,10 @@ function addStoreProduct(){
         body:
             JSON.stringify(store_product)
 
-    }).then(response => {
-        if(response.status==200)
-            alert ("Store product was added successfully! ");
-        else alert("Addition failed")
-    })
-        .catch(err => console.log(err));
+    }).then(response => response.text())
+        .then(data=>alert(data))
+        .catch(err => console.log(err))
+
 
 }
 
@@ -76,4 +72,25 @@ function loadStoreProductAddition(form_id, opt_id){
 
 function hideForm(id){
     document.getElementById(id).style.display = 'none';
+}
+
+function deleteCategory(category_id){
+    let uri = "/delete/category/"+category_id;
+
+    fetch(uri).then(response => response.text())
+        .then(data=> {
+            alert(data);
+            if (data == "Category was deleted successfully! ") document.getElementById(category_id).remove();
+        }).catch(err => console.log(err));
+
+}
+function deleteStoreProduct(s_product_id){
+    let uri = "/delete/storeProduct/"+s_product_id;
+    fetch(uri).then(response => response.text())
+        .then(data=> {
+            alert(data);
+            if (data == "Product was deleted successfully! ") document.getElementById(category_id).remove();
+        }).catch(err => console.log(err));
+    alert('Delition was sucessful');
+    document.getElementById(s_product_id).remove();
 }

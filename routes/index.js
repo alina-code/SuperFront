@@ -51,7 +51,7 @@ router.get('/categories', function(req, res, next) {
   fetch('http://localhost:8080/manager/categories',{
     method: 'GET',
     headers: {
-        //Authorization: auth
+        Authorization: auth
     }}).then(response => response.json())
       .then(data => {
         console.log(data);
@@ -65,7 +65,7 @@ router.get('/checks', function(req, res, next) {
   fetch('http://localhost:8080/manager/checks',{
     method: 'GET',
     headers: {
-      //Authorization: req.cookies.auth
+      Authorization: req.cookies.auth
     }}).then(response => response.json())
       .then(data => {
         res.render('checksPage', { title: 'Zlagoda', checks: data});
@@ -80,7 +80,7 @@ router.get('/checksCashier', function(req, res, next) {
   fetch('http://localhost:8080/cashier/checks',{
     method: 'GET',
     headers: {
-      //Authorization: req.cookies.auth
+      Authorization: req.cookies.auth
     }}).then(response => response.json())
       .then(data => {
         res.render('checksCashierPage', { title: 'Zlagoda', checks: data});
@@ -96,7 +96,7 @@ router.get('/clients', function(req, res, next) {
   fetch('http://localhost:8080/manager/clients',{
     method: 'GET',
     headers: {
-      //Authorization: auth
+      Authorization: auth
     }}).then(response => response.json())
       .then(data => {
         res.render('clientsPage', { title: 'Zlagoda', clients: data});
@@ -116,7 +116,7 @@ router.get('/addCheck', function(req, res, next) {
   fetch('http://localhost:8080/cashier/storeProducts',{
     method: 'GET',
     headers: {
-      //Authorization: auth
+        Authorization: auth
     }}).then(response => response.json())
       .then(data => {
         res.render('addCheck', { title: 'Zlagoda', products: data});
@@ -131,10 +131,10 @@ router.get('/addCheck', function(req, res, next) {
 router.get('/products', function(req, res, next) {
 
   let auth = req.cookies.auth;
-  fetch('http://localhost:8080/cashier/products',{
+  fetch('http://localhost:8080/manager/products',{
     method: 'GET',
     headers: {
-      //Authorization: auth
+       Authorization: auth
     }}).then(response => response.json())
       .then(data => {
         res.render('productsPage', { title: 'Zlagoda', products: data});
@@ -143,10 +143,10 @@ router.get('/products', function(req, res, next) {
 });
 
 router.get('/store-products', function(req, res, next) {
-  fetch('http://localhost:8080/cashier/storeProducts',{
+  fetch('http://localhost:8080/manager/storeProducts',{
     method: 'GET',
     headers: {
-      //Authorization: auth
+      Authorization: req.cookies.auth
     }}).then(response => response.json())
       .then(data => {
         let data2 = data;
@@ -161,10 +161,10 @@ router.get('/store-products', function(req, res, next) {
 
 router.get('/employ', function(req, res, next) {
   let auth = req.cookies.auth;
-  fetch('http://localhost:8080/manager/employee',{
+  fetch('http://localhost:8080/manager/employees',{
     method: 'GET',
     headers: {
-      //Authorization: auth
+      Authorization: auth
     }}).then(response => response.json())
       .then(data => {
         res.render('employPage', { title: 'Zlagoda', employees: data});

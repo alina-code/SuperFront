@@ -20,7 +20,11 @@ function deleteProduct(product_id){
 
 function deleteStoreProduct(s_product_id){
     let uri = "/delete/storeProduct/"+s_product_id;
-    fetch(uri);
+    fetch(uri).then(response => response.text())
+        .then(data=> {
+            alert(data);
+            if (data == "Product was deleted successfully! ") document.getElementById(category_id).remove();
+        }).catch(err => console.log(err));
     alert('Delition was sucessful');
     document.getElementById(s_product_id).remove();
 }

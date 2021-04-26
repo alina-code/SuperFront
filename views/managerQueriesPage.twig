@@ -45,7 +45,20 @@
                     <legend>Введіть прізвище працівника:</legend>
                     <input type = "text" id="surname-input" name="surname"></input>
                     <button type="submit" onclick="employeeBySurname()" class="button minimal">Знайти</button></fieldset>
-                <div id ="table3"></div>
+                    <table id ="table3" class="table table-hover" style="visibility: hidden">
+                        <thead>
+                        <tr>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Address</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td id="phone"></td>
+                            <td id="address"></td>
+                        </tr>
+                        </tbody>
+                    </table>
             </div>
         </div>
         <div class="accordion-item">

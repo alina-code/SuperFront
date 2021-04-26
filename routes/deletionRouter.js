@@ -27,7 +27,7 @@ router.get("/product/:product_id",function (req,res){
     fetch('http://localhost:8080/manager/product/'+req.params.product_id, {
         method: 'DELETE',
         headers: {
-            //Authorization: auth
+            Authorization: auth
         }}).then(response => {
         if(response.status==200)
             res.send("Product was deleted successfully! ");
@@ -41,7 +41,7 @@ router.get("/storeProduct/:s_product_id",function (req,res){
     fetch('http://localhost:8080/manager/storeProduct/'+req.params.s_product_id, {
         method: 'DELETE',
         headers: {
-            //Authorization: auth
+            Authorization: auth
         }}).then(response => {
         if(response.status==200)
             res.send("Store product was deleted successfully! ");
@@ -69,7 +69,7 @@ router.get("/customerCard/:client_id",function (req,res){
     fetch('http://localhost:8080/manager/customerCard/'+req.params.client_id, {
         method: 'DELETE',
         headers: {
-            //Authorization: auth
+            Authorization: auth
         }}).then(response => {
         if(response.status==200)
             res.send("Customer was deleted successfully! ");
@@ -83,7 +83,7 @@ router.get("/employee/:employee_id",function (req,res){
     fetch('http://localhost:8080/manager/employee/'+req.params.employee_id, {
         method: 'DELETE',
         headers: {
-            //Authorization: auth
+            Authorization: auth
         }}).then(response => {
         if(response.status==200)
             res.send("Employee was deleted successfully! ");

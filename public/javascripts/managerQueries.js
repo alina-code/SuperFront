@@ -17,21 +17,36 @@ function goodsFromCategory2() {
 
     fetch(uri).then(response => response.json())
         .then(data => {
+            if(data.length == 0){
+                document.getElementById('table2').innerHTML ="<p> There are no products in this category!</p>"
+            }
             document.getElementById('table2').innerHTML = buildTableFromJson(data)
         })
         .catch(err => console.log(err));}
 
+
 function employeeBySurname(){
     let surname = document.getElementById('surname-input').value;
     let uri = "/manager/employee/"+surname;
+    if(surname===""){
+        alert("Please enter employee`s surname!")
+        return;
+    }
 
     fetch(uri).then(response => response.json())
         .then(data => {
-            document.getElementById('table3').innerHTML = buildTableFromJson(data)
+            if(data.length==0){
+                document.getElementById('table3').style.visibility = 'hidden';
+                alert("There is no employee with this surname!")
+
+            }
+            else{
+            document.getElementById('phone').innerHTML = data[0].phone_number;
+            document.getElementById('address').innerHTML = data[0].city+", "+data[0].street+", "+data[0].zip_code;
+            document.getElementById('table3').style.visibility = 'visible';}
         })
         .catch(err => console.log(err));
 }
-
 function productsSorted(){
     let uri = "/manager/products";
 
@@ -49,7 +64,13 @@ function goodsFromCategoryNotSorted() {
 
     fetch(uri).then(response => response.json())
         .then(data => {
-            document.getElementById('table8').innerHTML = buildTableFromJson(data)
+            if(data.length==0) {
+                alert("There are no products in this category!")
+                document.getElementById('table8').innerHTML =" <p>There are no products in this category!</p>"
+
+            }
+            else
+                document.getElementById('table8').innerHTML = buildTableFromJson(data)
         })
         .catch(err => console.log(err));}
 
@@ -58,6 +79,12 @@ function categoriesSorted(){
 
     fetch(uri).then(response => response.json())
         .then(data => {
+            if(data.length==0) {
+                alert("There are no products in this category!")
+                document.getElementById('table7').innerHTML = "<p>There are no products in this category!</p>"
+
+            }
+            else
             document.getElementById('table7').innerHTML = buildTableFromJson(data)
         })
         .catch(err => console.log(err));
@@ -76,8 +103,10 @@ function storeProductsOfProduct() {
 function productByUpc() {
     let upc = document.getElementById('upc-selector').value;
 
+    if(upc ==="")
+    {alert("Please enter upc!")
+    return;}
     let uri = "manager/price-and-quantity-by-upc/"+upc;
-    console.log(uri);
 
     fetch(uri).then(response => response.json())
         .then(data => {
@@ -122,6 +151,7 @@ function cashierChecks(){
 
     fetch(uri).then(response => response.json())
         .then(data => {
+
             document.getElementById('table22').innerHTML = buildTableFromJson(data);
         })
         .catch(err => console.log(err));
@@ -147,9 +177,10 @@ function soldItemsOfProduct(){
 
     let uri = "/manager/receipt/numberOf/"+id+"/"+from+"/"+to;
 
-    fetch(uri).then(response => response.json())
+    fetch(uri).then(response => response.text())
         .then(data => {
-            document.getElementById('table24').innerHTML = buildTableFromJson(data);
+
+            document.getElementById('table24').innerHTML = "<p class = 'display-3'>"+data+"  </p>";
         })
         .catch(err => console.log(err));
 }

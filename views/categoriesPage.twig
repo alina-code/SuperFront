@@ -25,7 +25,7 @@
                 {% for key in category %}
                     <td>{{ key }} </td>
                 {% endfor %}
-                <td><button type="button" class="btn btn-outline-success btn-sm">Edit</button>
+                <td>
                     <button type="button" class="btn btn-outline-danger btn-sm" onclick="deleteCategory({{ category.category_number }})">Delete</button> </td>
             </tr>
         {% endfor %}

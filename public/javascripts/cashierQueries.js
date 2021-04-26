@@ -16,8 +16,9 @@ function myChecks(){
 function checkInfo() {
     let checkNumber = document.getElementById('check-number-selector').value;
 
+    if(checkNumber === "" )
+        alert("Please enter check number!")
     let uri = "/cashier/checkInfo/"+checkNumber;
-    console.log(uri);
 
     fetch(uri).then(response => response.json())
         .then(data => {
@@ -50,12 +51,18 @@ function checkProdInfo(){
 function clientInfo() {
     let surname = document.getElementById('client-surname-selector').value;
 
+    if(surname ==="")
+        alert("Please enter surname!")
+
     let uri = "/cashier/clientInfo/"+surname;
     console.log(uri);
 
     fetch(uri).then(response => response.json())
         .then(data => {
-            document.getElementById('table3').innerHTML = buildTableFromJson(data)
+            if(data.length ==0)
+                document.getElementById('table3').innerHTML ="<p> It seems there is no info about this client</p>"
+            else
+                document.getElementById('table3').innerHTML = buildTableFromJson(data)
         })
         .catch(err => console.log(err));
 
@@ -101,7 +108,10 @@ function goodsFromCategory() {
 
     fetch(uri).then(response => response.json())
         .then(data => {
-            document.getElementById('table5').innerHTML = buildTableFromJson(data)
+            if(data.length ==0)
+                document.getElementById('table5').innerHTML = "<p> There is no product in this category</p>"
+            else
+                document.getElementById('table5').innerHTML = buildTableFromJson(data)
         })
         .catch(err => console.log(err));}
 
@@ -164,6 +174,9 @@ function buildTableFromJson(data){
 function checkProductsInfo() {
     let checkNumber = document.getElementById('check-number-selector-2').value;
 
+    if(checkNumber === ""){
+        alert("Please enter check number!")
+    return;}
     let uri = "/cashier/productsInReceipt/"+checkNumber;
     console.log(uri);
 
@@ -178,6 +191,10 @@ function checkProductsInfo() {
 function productByUpc() {
     let upc = document.getElementById('upc-selector').value;
 
+    if(upc ==="") {
+        alert("Please enter upc!");
+        return;
+    }
     let uri = "/cashier/priceAndQuantityByUpc/"+upc;
 
     fetch(uri).then(response => response.json())
