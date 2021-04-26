@@ -2,7 +2,29 @@
 {% block body %}
 
     <h1 style = "margin-top: 30px;">Store products</h1>
-    <button type="button" class="btn btn-primary" style="margin-top: 30px; margin-bottom: 30px">Add store product</button>
+
+<div class="form-group" id = "storeProductInput" style="margin-top: 20px; margin-bottom: 20px">
+    <label for="inputProductUpc">Upc: </label>
+    <br>
+    <input type="text" class="form-control" id="inputSProductUpc" aria-describedby="emailHelp" placeholder="Enter upc">
+    <br>
+    <label for="selectProductId">Select product id: </label>
+    <select id = "selectProductId"class="form-select" aria-label="Default select example">
+    </select>
+
+</div>
+
+
+{
+
+"upc": "129a",
+"id_product": 7,
+"selling_price": 19.27,
+"products_number": 12,
+"promotional_product": false
+}
+
+    <button type="button" class="btn btn-primary" style="margin-top: 10px; margin-bottom: 30px">Add store product</button>
     <table class="table table-hover">
         <thead>
         <tr>
